@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>ISACA CISM: Certified Information Security Manager | الدليل القيادي الشامل</title>
+    <style>
+:root {
+    --bg-body: #080c14; --bg-surface: #0f172a; --bg-card: #141f36; --bg-subtle: #1c2b4d;
+    --text-main: #f8fafc; --text-muted: #94a3b8; --accent-cyan: #38bdf8; --accent-blue: #2563eb;
+    --accent-green: #10b981; --accent-purple: #a855f7; --accent-amber: #f59e0b; --accent-red: #ef4444;
+    --border: #233554; --shadow-3d: 0 20px 35px -10px rgba(0, 0, 0, 0.6), 0 0 15px rgba(56, 189, 248, 0.1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", sans-serif; }
+body { background-color: var(--bg-body); color: var(--text-main); line-height: 1.85; padding-bottom: 80px; }
+.container { max-width: 1150px; margin: 0 auto; padding: 0 16px; }
+
+.top-navbar {
+    position: sticky; top: 0; z-index: 999;
+    background: rgba(15, 23, 42, 0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border); padding: 12px 16px; margin-bottom: 25px;
+}
+.nav-content {
+    max-width: 1150px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+.nav-btn {
+    background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text-main);
+    padding: 8px 14px; border-radius: 8px; text-decoration: none; font-size: 0.88rem; font-weight: 600;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s;
+}
+.nav-btn:hover, .nav-btn.active { border-color: var(--accent-cyan); color: var(--accent-cyan); background: rgba(56, 189, 248, 0.1); }
+.module-pills { display: flex; gap: 6px; overflow-x: auto; padding: 4px 0; scrollbar-width: none; }
+.module-pills::-webkit-scrollbar { display: none; }
+.pill-btn {
+    background: var(--bg-card); border: 1px solid var(--border); color: var(--text-muted);
+    padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; white-space: nowrap; cursor: pointer; transition: all 0.2s;
+}
+.pill-btn.active { color: #fff; background: var(--accent-blue); border-color: var(--accent-cyan); font-weight: 700; }
+
+.hero-banner {
+    background: linear-gradient(135deg, #101c36 0%, #0a1122 100%);
+    border: 1px solid var(--border); border-radius: 20px;
+    padding: 35px 25px; text-align: center; margin-bottom: 30px; box-shadow: var(--shadow-3d);
+}
+.badge-cert {
+    display: inline-block; background: rgba(56, 189, 248, 0.12); color: var(--accent-cyan);
+    border: 1px solid var(--accent-cyan); padding: 6px 18px; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 700; margin-bottom: 15px; letter-spacing: 0.5px;
+}
+.hero-title { font-size: 2.2rem; color: #fff; margin-bottom: 12px; font-weight: 800; }
+.hero-subtitle { color: var(--text-muted); font-size: 1.05rem; max-width: 900px; margin: 0 auto 20px auto; line-height: 1.8; }
+.hero-meta { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 0.88rem; margin-top: 15px; }
+.hero-meta-item { background: rgba(15, 23, 42, 0.6); padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border); color: #cbd5e1; }
+
+.view-section { display: none; }
+.view-section.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.content-block {
+    background: var(--bg-surface); border: 1px solid var(--border);
+    border-radius: 18px; padding: 30px 25px; margin-bottom: 30px;
+}
+.block-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.block-num-circle {
+    width: 40px; height: 40px; border-radius: 12px; background: var(--accent-blue);
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-weight: bold; font-size: 1.2rem; flex-shrink: 0;
+}
+.block-title { font-size: 1.45rem; color: #fff; font-weight: 700; }
+.section-text { font-size: 1.02rem; color: #cbd5e1; line-height: 1.9; margin-bottom: 18px; }
+
+.teacher-pedagogy-box {
+    border: 2px solid var(--accent-cyan);
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.07) 0%, #0f172a 100%);
+    border-radius: 18px; padding: 28px 24px; margin: 25px 0 35px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+.teacher-pedagogy-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 15px;
+    color: var(--accent-cyan); font-size: 1.35rem; font-weight: 800;
+}
+
+.analogy-card {
+    background: rgba(20, 31, 54, 0.85); border-right: 4px solid var(--accent-cyan);
+    border-radius: 0 12px 12px 0; padding: 18px 20px; margin: 18px 0;
+    color: #e2e8f0; font-size: 0.98rem; line-height: 1.85;
+}
+.analogy-card strong { color: var(--accent-cyan); }
+
+.diagram-surface-3d {
+    background: linear-gradient(145deg, #162444 0%, #0d172e 100%);
+    border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 20px;
+    padding: 30px 24px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+    margin: 30px 0;
+}
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin: 20px 0; }
+.card-3d {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px; transition: all 0.25s ease;
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+.card-3d:hover { transform: translateY(-4px); border-color: var(--accent-cyan); box-shadow: 0 12px 25px rgba(0,0,0,0.5); }
+.card-tip {
+    background: rgba(15, 23, 42, 0.7); border-right: 3px solid var(--accent-cyan);
+    padding: 10px 14px; border-radius: 0 8px 8px 0; font-size: 0.88rem; color: #cbd5e1; margin-top: 14px;
+}
+
+.code-snippet {
+    background: #060a12; border: 1px solid #1e2d4a; border-radius: 10px;
+    padding: 16px; font-family: Consolas, "Courier New", monospace; font-size: 0.9rem;
+    color: #38bdf8; overflow-x: auto; margin: 16px 0; direction: ltr; text-align: left;
+}
+
+.table-responsive { width: 100%; overflow-x: auto; margin: 22px 0; border: 1px solid var(--border); border-radius: 12px; }
+table.spec-table { width: 100%; border-collapse: collapse; text-align: right; font-size: 0.92rem; }
+table.spec-table th { background: #192744; color: var(--accent-cyan); padding: 14px 16px; font-weight: 700; border-bottom: 2px solid var(--border); }
+table.spec-table td { padding: 12px 16px; border-bottom: 1px solid #1c2b4d; color: #cbd5e1; }
+table.spec-table tr:hover { background: rgba(30, 41, 59, 0.5); }
+
+.quiz-wrapper { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 20px; padding: 30px 24px; margin: 40px 0; }
+.question-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; margin-bottom: 22px; }
+.option-choice-btn {
+    background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border); color: var(--text-main);
+    padding: 14px 18px; border-radius: 10px; text-align: right; font-size: 0.95rem;
+    cursor: pointer; width: 100%; margin-bottom: 10px; transition: all 0.2s; display: block;
+}
+.option-choice-btn:hover { border-color: var(--accent-cyan); background: var(--bg-subtle); }
+.option-choice-btn.correct { background: rgba(16, 185, 129, 0.25) !important; border-color: var(--accent-green) !important; color: #a7f3d0 !important; font-weight: 700; }
+.option-choice-btn.incorrect { background: rgba(239, 68, 68, 0.25) !important; border-color: var(--accent-red) !important; color: #fecaca !important; }
+.explanation-box { margin-top: 14px; padding: 12px 16px; border-radius: 10px; font-size: 0.92rem; display: none; line-height: 1.7; }
+.explanation-box.show { display: block; }
+.explanation-box.success { background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green); color: #6ee7b7; }
+.explanation-box.error { background: rgba(239, 68, 68, 0.15); border: 1px solid var(--accent-red); color: #fca5a5; }
+
+.bottom-nav-bar {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--border); flex-wrap: wrap;
+}
+.nav-btn-lg {
+    background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main);
+    padding: 12px 22px; border-radius: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+}
+.nav-btn-lg:hover { border-color: var(--accent-cyan); }
+.nav-btn-primary-lg { background: var(--accent-blue); color: #fff; border-color: var(--accent-cyan); }
+</style>
+</head>
+<body>
+
+<div class="top-navbar">
+    <div class="nav-content">
+        <div style="display: flex; gap: 8px;">
+            <a href="../index.html" class="nav-btn">🏠 البوابة الرئيسية</a>
+            <button class="nav-btn" onclick="switchTab('view-toc')">📚 الفهرس العام</button>
+        </div>
+        <div class="module-pills">
+            <button class="pill-btn active" id="pill-view-toc" onclick="switchTab('view-toc')">نظرة عامة والامتحان</button>
+            <button class="pill-btn" id="pill-view-d1" onclick="switchTab('view-d1')">المجال 1: حوكمة أمن المعلومات</button>
+            <button class="pill-btn" id="pill-view-d2" onclick="switchTab('view-d2')">المجال 2: إدارة مخاطر المعلومات</button>
+            <button class="pill-btn" id="pill-view-d3" onclick="switchTab('view-d3')">المجال 3: تطوير برنامج أمن المعلومات</button>
+            <button class="pill-btn" id="pill-view-d4" onclick="switchTab('view-d4')">المجال 4: إدارة الحوادث والاستجابة</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- VIEW 0: TOC -->
+<div id="view-toc" class="view-section active">
+    <div class="hero-banner">
+        <div class="badge-cert">Official ISACA Global Certification: CISM®</div>
+        <h1 class="hero-title">Certified Information Security Manager (CISM)</h1>
+        <p class="hero-subtitle">
+            الدليل التدريبي والتنفيذي المعتمد لقادة الأمن السيبراني ومديري أمن المعلومات (CISO). يركز المنهج على التحول من التفكير الفني التقني إلى التفكير الإداري والاستراتيجي: مواءمة أمن المعلومات مع أهداف مجلس الإدارة، إدارة المخاطر المالية، بناء برامج الأمن المؤسسية، وقيادة فرق الطوارئ أثناء الأزمات السيبرانية.
+        </p>
+        <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ الاعتماد الدولي: <strong>ISACA Global</strong></div>
+            <div class="hero-meta-item">📅 مدة التدريب المعتمدة: <strong>4 أيام (32 CPE Hours معتمدة)</strong></div>
+            <div class="hero-meta-item">🎯 كود الامتحان: <strong>CISM Exam</strong> (درجة النجاح: 450 / 800)</div>
+            <div class="hero-meta-item">💼 الدور القيادي: <strong>مدير أمن المعلومات التنفيذي (CISO / Security Director)</strong></div>
+        </div>
+    </div>
+
+    <!-- Teacher Pedagogy Box on TOC -->
+    <div class="teacher-pedagogy-box">
+        <div class="teacher-pedagogy-header">🛡️ مدخل المعلم الخاص: كيف تفكر كـ CISO وليس كمهندس فني؟</div>
+        <p class="section-text">
+            السر الأكبر لاجتياز CISM والتألق كمدير أمن معلومات هو: <strong>تغيير نظارتك للعالم تماماً!</strong>
+        </p>
+        <div class="analogy-card">
+            <strong>الفرق بين المهندس الفني والـ CISO:</strong><br>
+            • <strong>المهندس الفني:</strong> يرى العالم كثغرات، وبورتات مفتوحة، وفايروول، وتشفير. هدفه هو "منع كل شيء لتحقيق أمان 100%".<br>
+            • <strong>مدير أمن المعلومات (CISO):</strong> يدرك أنه لا يوجد شيء اسمه "أمان 100% في التجارة"! إذا أغلقت كل شيء، سيتوقف البنك عن العمل ويفلس! هدفه الحقيقي هو <strong>تمكين الأعمال (Business Enablement)</strong>: كيف نساعد الشركة على إطلاق تطبيق الدفع الرقمي الجديد والربح السريع، ولكن مع وضع سياج أمني ذكي يخفض المخاطر إلى المستوى الذي يوافق عليه مجلس الإدارة (Acceptable Risk Level)!
+        </div>
+    </div>
+
+    <div class="diagram-surface-3d">
+        <h3 style="color: #fff; margin-bottom: 15px;">📊 نطاقات المعرفة الرسمية في امتحان CISM الدولي (ISACA Blueprint)</h3>
+        <div class="table-responsive">
+            <table class="spec-table">
+                <thead>
+                    <tr><th>النطاق المعرفي الرسمي (Domain)</th><th>الموضوع الإداري والاستراتيجي</th><th>الوزن في الامتحان</th><th>المحاور الجوهرية</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Domain 1: Information Security Governance</strong></td><td>حوكمة أمن المعلومات المؤسسية</td><td>17%</td><td>المواءمة الاستراتيجية، لجان التوجيه، مصفوفة RACI، شهية المخاطر</td></tr>
+                    <tr><td><strong>Domain 2: Information Risk Management</strong></td><td>إدارة مخاطر المعلومات</td><td>20%</td><td>التحليل الكمي (SLE, ARO, ALE)، تقييم التهديدات، خيارات معالجة المخاطر</td></tr>
+                    <tr><td><strong>Domain 3: Information Security Program</strong></td><td>تطوير وإدارة برنامج الأمن</td><td>33%</td><td>هرمية السياسات، الأطر العالمية (ISO 27001, NIST)، أمان سلاسل الإمداد</td></tr>
+                    <tr><td><strong>Domain 4: Incident Management</strong></td><td>إدارة الحوادث والاستجابة للطوارئ</td><td>30%</td><td>خطة الاستجابة IRP، مقاييس التعافي RTO/RPO، والأدلة الجنائية الرقمية</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="grid-cards">
+        <div class="card-3d" onclick="switchTab('view-d1')" style="cursor: pointer;">
+            <div>
+                <span style="color: #f87171; font-weight: bold; font-size: 0.85rem;">المجال 1 (17%)</span>
+                <h3 style="color: #fff; margin: 8px 0 12px 0;">حوكمة أمن المعلومات المؤسسية</h3>
+                <p style="color: #cbd5e1; font-size: 0.93rem;">تحديد الإطار الاستراتيجي للأمن، تشكيل لجنة توجيه الأمن (Steering Committee)، تحديد شهية المخاطر لمجلس الإدارة، وتوزيع المسؤوليات بمصفوفة RACI.</p>
+            </div>
+            <button class="nav-btn" style="margin-top: 15px;">دراسة المجال ➔</button>
+        </div>
+
+        <div class="card-3d" onclick="switchTab('view-d2')" style="cursor: pointer;">
+            <div>
+                <span style="color: #38bdf8; font-weight: bold; font-size: 0.85rem;">المجال 2 (20%)</span>
+                <h3 style="color: #fff; margin: 8px 0 12px 0;">إدارة مخاطر المعلومات</h3>
+                <p style="color: #cbd5e1; font-size: 0.93rem;">حساب الخسائر السنوية المتوقعة بالمعادلات الرياضية (ALE = SLE × ARO)، واستراتيجيات معالجة المخاطر الأربعة: التخفيف، النقل للتأمين، القبول، والتجنب.</p>
+            </div>
+            <button class="nav-btn" style="margin-top: 15px;">دراسة المجال ➔</button>
+        </div>
+
+        <div class="card-3d" onclick="switchTab('view-d3')" style="cursor: pointer;">
+            <div>
+                <span style="color: #10b981; font-weight: bold; font-size: 0.85rem;">المجال 3 (33%)</span>
+                <h3 style="color: #fff; margin: 8px 0 12px 0;">تطوير وإدارة برنامج أمن المعلومات</h3>
+                <p style="color: #cbd5e1; font-size: 0.93rem;">المجال الأضخم في الامتحان: تصميم المعمارية الأمنية (SABSA, ISO 27001)، هرمية الوثائق من السياسة إلى الإجراء، وتأمين موردي الطرف الثالث والخدمات السحابية.</p>
+            </div>
+            <button class="nav-btn" style="margin-top: 15px;">دراسة المجال ➔</button>
+        </div>
+
+        <div class="card-3d" onclick="switchTab('view-d4')" style="cursor: pointer;">
+            <div>
+                <span style="color: #a855f7; font-weight: bold; font-size: 0.85rem;">المجال 4 (30%)</span>
+                <h3 style="color: #fff; margin: 8px 0 12px 0;">إدارة الحوادث والاستجابة للطوارئ</h3>
+                <p style="color: #cbd5e1; font-size: 0.93rem;">قيادة فرق الاستجابة للطوارئ (CSIRT)، خطوات الاحتواء الفوري لعزل هجمات الفدية، حسابات زمن التعافي RTO و RPO، والحفاظ على سلسلة الأدلة الجنائية.</p>
+            </div>
+            <button class="nav-btn" style="margin-top: 15px;">دراسة المجال ➔</button>
+        </div>
+    </div>
+</div>
+
+<!-- VIEW 1: DOMAIN 1 -->
+<div id="view-d1" class="view-section">
+    <div class="teacher-pedagogy-box">
+        <div class="teacher-pedagogy-header">🏛️ شرح معلم خاص: ما هي الحوكمة؟ ومصفوفة RACI للحماية القانونية</div>
+        <p class="section-text">
+            الحوكمة تعني باختصار: <strong>"من يملك القرار؟ ومن يُحاسب قانونياً في المحاكم إذا وقعت كارثة؟"</strong>
+        </p>
+        <div class="analogy-card">
+            <strong>مصفوفة RACI في أمن المعلومات:</strong><br>
+            • <strong>Accountable (المساءل النهائي):</strong> هو شخص واحد فقط في المنظمة: <strong>مجلس الإدارة (Board of Directors) والرئيس التنفيذي (CEO)</strong>! في القانون الدولي، لا يمكن لمجلس الإدارة أن يقول "نحن لا نفهم كمبيوتر!"؛ هم المساءلون ائتمانياً وقانونياً عن حماية بيانات العملاء.<br>
+            • <strong>Responsible (المنفذ والمشرف):</strong> هو <strong>مدير أمن المعلومات (CISO)</strong> الذي يضع الاستراتيجية وينفذ الضوابط.<br>
+            • <strong>Consulted (المستشار):</strong> الإدارة القانونية، والموارد البشرية، والمدقق الداخلي.<br>
+            • <strong>Informed (المُبلَغ بالنتائج):</strong> بقية الموظفين ورؤساء الأقسام.
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="block-header">
+            <div class="block-num-circle">1</div>
+            <h2 class="block-title">المجال 1: حوكمة أمن المعلومات (Information Security Governance)</h2>
+        </div>
+
+        <div class="grid-cards">
+            <div class="card-3d">
+                <h4 style="color: #38bdf8;">1. المواءمة الاستراتيجية (Strategic Alignment)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    استراتيجية الأمن لا تُكتب في فراغ؛ يجب أن تكون مشتقة بنسبة 100% من أهداف العمل التجارية.
+                    إذا كانت رؤية الشركة هي التوسع العالمي السريع، فيجب أن تركز استراتيجية الأمن على تسهيل الوصول السحابي الآمن وليس إغلاق المنافذ وتعطيل التوسع.
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #10b981;">2. شهية المخاطر (Risk Appetite vs Tolerance)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    • <strong>شهية المخاطر (Appetite):</strong> كمية المخاطر العامة التي يقرر مجلس الإدارة قبولها لتحقيق أرباحه (مثل: نقبل العمل في دول ناشئة رغم المخاطر).<br>
+                    • <strong>تحمل المخاطر (Tolerance):</strong> الانحراف التشغيلي اليومي المقبول عن تلك الشهية (مثل: نقبل تأخير تحديث السيرفرات لمدة 48 ساعة فقط كحد أقصى).
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #a855f7;">3. لجنة توجيه أمن المعلومات (Steering Committee)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    أهم هيئة حوكمية يشرف عليها CISO. تضم: رؤساء قطاعات الأعمال، الشؤون القانونية، الموارد البشرية، والمدير المالي.
+                    وظيفتها: اعتماد ميزانيات الأمن، حل الخلافات بين متطلبات الأمان وسرعة البيع، وضمان التزام جميع الإدارات بالسياسات.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz D1 -->
+    <div class="quiz-wrapper">
+        <h3 style="color: #fff; margin-bottom: 15px;">🧠 اختبار تقييمي معتمد: أسئلة سيناريو المجال الأول (CISM)</h3>
+        <div class="question-card">
+            <p style="color: #fff; font-weight: 600; margin-bottom: 14px;">السؤال 1: ما هو المبرر الأكثر إقناعاً لمدير أمن المعلومات عند طلب ميزانية إضافية من مجلس الإدارة لتنفيذ برنامج أمني جديد؟</p>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'cism-q1-exp')">أ) توضيح أن الشركة المنافسة اشترت هذا النظام الأمني الأسبوع الماضي.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, true, 'cism-q1-exp')">ب) تقديم دراسة جدوى استثمارية (Business Case) توضح كيف يساهم البرنامج الأمني في حماية أهداف العمل وخفض الخسائر المالية المتوقعة تحت سقف شهية المخاطر المعتمدة.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'cism-q1-exp')">ج) تهديد مجلس الإدارة بأن الهكرز سيخترقون النظام غداً إن لم يدفعوا.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'cism-q1-exp')">د) عرض شاشات كود برمجي معقدة لإبهار أعضاء المجلس.</button>
+            <div id="cism-q1-exp" class="explanation-box">
+                <strong>التفسير الرسمي لـ ISACA:</strong> الإجابة الصحيحة هي (ب). في منهجية CISM الحوكمية، لغة الحديث مع مجلس الإدارة هي دراسة الجدوى (Business Case) المربوطة بحماية أهداف العمل والعائد على الاستثمار، وليس التخويف أو مضاهاة المنافسين بشكل أعمى.
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav-bar">
+        <button class="nav-btn-lg" onclick="switchTab('view-toc')">⏮️ العودة للفهرس</button>
+        <button class="nav-btn-lg nav-btn-primary-lg" onclick="switchTab('view-d2')">المجال 2: إدارة المخاطر ➔</button>
+    </div>
+</div>
+
+<!-- VIEW 2: DOMAIN 2 -->
+<div id="view-d2" class="view-section">
+    <div class="teacher-pedagogy-box">
+        <div class="teacher-pedagogy-header">📐 شرح معلم خاص: كيف تحسب المخاطر السيبرانية بالدولار والقرش؟ (التحليل الكمي)</div>
+        <p class="section-text">
+            مدير الأمن المحترف لا يقول <em>"المخاطر كبيرة جداً يا فندم!"</em>، بل يقدم أرقاماً مالية دقيقة لا تقبل الجدال:
+        </p>
+        <div class="analogy-card">
+            <strong>معادلات التحليل الكمي للمخاطر (Quantitative Risk Analysis):</strong><br>
+            • <strong>Asset Value (قيمة الأصل AV):</strong> قاعدة بيانات العملاء قيمتها للمؤسسة = 1,000,000 دولار.<br>
+            • <strong>Exposure Factor (معامل التعرض EF):</strong> إذا حدث اختراق، كم نسبة الضرر؟ لنقل 30% = (EF = 0.30).<br>
+            • <strong>Single Loss Expectancy (خسارة الحادث الفردي SLE):</strong><br>
+            <code>SLE = AV × EF = 1,000,000 × 0.30 = 300,000 دولار</code> (خسارة وقوع الهجوم مرة واحدة).<br>
+            • <strong>Annualized Rate of Occurrence (معدل التكرار السنوي ARO):</strong> كم مرة متوقع حدوث هذا الهجوم سنوياً؟ لنقل مرة كل سنتين (ARO = 0.5).<br>
+            • <strong>Annualized Loss Expectancy (الخسارة السنوية المتوقعة ALE):</strong><br>
+            <code>ALE = SLE × ARO = 300,000 × 0.5 = 150,000 دولار سنوياً!</code><br>
+            • <strong>قاعدة القرار الاستثماري للـ CISO:</strong> إذا جاءت شركة وعرضت عليك نظام حماية يكلف 100,000 دولار سنوياً ويخفض الخسارة إلى الصفر، فأنت توفر للشركة 50,000 دولار صافية (اشترِ فوراً!). أما لو طلبوا 180,000 دولار سنوياً، فارفض فوراً لأن تكلفة الحماية أكبر من الخسارة المتوقعة!
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="block-header">
+            <div class="block-num-circle">2</div>
+            <h2 class="block-title">المجال 2: إدارة مخاطر المعلومات وخيارات المعالجة الأربعة</h2>
+        </div>
+
+        <div class="grid-cards">
+            <div class="card-3d">
+                <h4 style="color: #38bdf8;">1. التخفيف والحد من المخاطر (Mitigation)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    تطبيق ضوابط أمنية وقائية (مثل التشفير، المصادقة الثنائية MFA، وتدريب الموظفين) لتقليل احتمالية الهجوم أو تقليل حجم الخسارة عند وقوعه.
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #10b981;">2. نقل المخاطر ومشاركتها (Transference)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    نقل العبء المالي للخطر إلى طرف ثالث عبر:
+                    شراء بوالص التأمين السيبراني (Cyber Insurance)، أو عقود اتفاقيات مستوى الخدمة (SLAs) مع مزودي السحابة الكبرى.
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #f59e0b;">3. قبول المخاطر رسمياً (Acceptance)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    إذا كان الخطر المتبقي (Residual Risk) يقع تحت سقف شهية المخاطر المعتمدة لمجلس الإدارة، وتكلفة علاجه أكبر من خسارته، يتم توثيق الخطر في سجل المخاطر وتوقيع الإدارة على قبوله رسمياً.
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #ef4444;">4. تجنب المخاطر (Avoidance)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    إيقاف النشاط التجاري بالكامل أو إلغاء الميزة البرمجية لأن حجم المخاطر يتجاوز قدرة المؤسسة المالية والتنظيمية ولا يمكن حمايتها بتكلفة معقولة.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz D2 -->
+    <div class="quiz-wrapper">
+        <h3 style="color: #fff; margin-bottom: 15px;">🧠 اختبار تقييمي معتمد: أسئلة سيناريو المجال الثاني (CISM)</h3>
+        <div class="question-card">
+            <p style="color: #fff; font-weight: 600; margin-bottom: 14px;">السؤال 2: بعد تطبيق كافة الضوابط الفنية الممكنة، تبقى خطر أمني محتمل على أحد الخوادم القديمة. تكلفة استبدال الخادم بالكامل تبلغ 200,000$ بينما أقصى خسارة سنوية متوقعة منه هي 5,000$. ما هو الإجراء السليم لمدير أمن المعلومات؟</p>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'cism-q2-exp')">أ) إجبار الإدارة على شراء الخادم الجديد فوراً مهما كانت التكلفة.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, true, 'cism-q2-exp')">ب) رفع تقرير إلى مالك العمل (Business Owner) والإدارة العليا للتوصية بقبول الخطر المتبقي (Risk Acceptance) وتوثيقه في سجل المخاطر.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'cism-q2-exp')">ج) إخفاء التقرير لكي لا يقلق مجلس الإدارة.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'cism-q2-exp')">د) فصل السيرفر عن الكهرباء دون علم أحد.</button>
+            <div id="cism-q2-exp" class="explanation-box">
+                <strong>التفسير الرسمي لـ ISACA:</strong> الإجابة الصحيحة هي (ب). المبدأ المالي في CISM يحكم بأن الإنفاق الأمني يجب أن يكون ذا جدوى اقتصادية؛ فعندما تفوق تكلفة الضابط الأمني الخسارة بأضعاف مضاعفة، يكون القرار الإداري السليم هو قبول الخطر رسمياً وتوثيقه بموافقة الإدارة المسؤولة.
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav-bar">
+        <button class="nav-btn-lg" onclick="switchTab('view-d1')">⏮️ السابق: المجال 1</button>
+        <button class="nav-btn-lg nav-btn-primary-lg" onclick="switchTab('view-d3')">المجال 3: برنامج الأمن ➔</button>
+    </div>
+</div>
+
+<!-- VIEW 3: DOMAIN 3 -->
+<div id="view-d3" class="view-section">
+    <div class="teacher-pedagogy-box">
+        <div class="teacher-pedagogy-header">📜 شرح معلم خاص: هرمية وثائق أمن المعلومات (دستور الأمان في الشركات)</div>
+        <p class="section-text">
+            يخلط كثير من الموظفين بين "السياسة" و"المعيار" و"الإجراء". في CISM، هناك تدرج هرمي رسمي صارم من القمة إلى القاعدة:
+        </p>
+        <div class="analogy-card">
+            <strong>هرم الوثائق الخمسة الحاكمة:</strong><br>
+            1. <strong>السياسة (Policy):</strong> هي "الدستور الأعلى للشركة". وثيقة عامة عالية المستوى يوقعها مجلس الإدارة (مثال: تلتزم الشركة بحماية بيانات العملاء وخصوصيتها). إلزامية بالكامل وتتغير نادراً جداً.<br>
+            2. <strong>المعيار (Standard):</strong> القوانين والمواصفات المحددة الإلزامية (مثال: كلمات المرور يجب أن تكون 14 حرفاً على الأقل، والتشفير يجب أن يكون AES-256).<br>
+            3. <strong>خط الأساس (Baseline):</strong> الحد الأدنى الإلزامي المقبول لتشغيل أي جهاز قبل ربطه بالشبكة.<br>
+            4. <strong>الإجراء (Procedure):</strong> خطوات العمل التفصيلية خطوة بخطوة (Step-by-Step recipe) مثل طريقة إعداد النسخ الاحتياطي.<br>
+            5. <strong>الإرشادات (Guidelines):</strong> <em>(الوحيدة الاختيارية!)</em> نصائح وأفضل ممارسات مرنة لمساعدة الموظفين، وليست إلزامية قانونياً.
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="block-header">
+            <div class="block-num-circle">3</div>
+            <h2 class="block-title">المسار 3: تطوير وإدارة برنامج أمن المعلومات المؤسسي (33% من الامتحان)</h2>
+        </div>
+
+        <div class="grid-cards">
+            <div class="card-3d">
+                <h4 style="color: #38bdf8;">1. الأطر والمعمارية الأمنية العالمية</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    • <strong>ISO/IEC 27001:2022:</strong> المعيار الدولي الشامل لنظام إدارة أمن المعلومات (ISMS).<br>
+                    • <strong>NIST CSF:</strong> إطار الأمن السيبراني الأمريكي (Identify, Protect, Detect, Respond, Recover).<br>
+                    • <strong>SABSA:</strong> معمارية أمن المؤسسات الموجهة بالأعمال (Business-Driven Security Architecture).
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #10b981;">2. أمان سلاسل الإمداد والطرف الثالث (Third-Party Risk)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    أكبر الاختراقات تأتي من ثغرات في برامج الموردين الصغار المتعاقدين مع البنك!
+                    ضوابط CISM:
+                    طلب تقارير التدقيق المستقلة <strong>SOC 2 Type II</strong>، وإدراج بند حق التدقيق المفاجئ (Right-to-Audit Clause) في كافة العقود التجارية.
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #a855f7;">3. هندسة الوعي الأمني والثقافة المؤسسية</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    الموظف هو خط الدفاع الأول أو نقطة الضعف القاتلة!
+                    برامج التوعية الأمنية لا تقتصر على تدريب سنوي ممل، بل تشمل <strong>حملات محاكاة التصيد الاحتيالي الدورية (Phishing Simulations)</strong> وتدريب الموظفين على رصد الروابط الخبيثة والإبلاغ عنها فوراً.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz D3 -->
+    <div class="quiz-wrapper">
+        <h3 style="color: #fff; margin-bottom: 15px;">🧠 اختبار تقييمي معتمد: أسئلة سيناريو المجال الثالث (CISM)</h3>
+        <div class="question-card">
+            <p style="color: #fff; font-weight: 600; margin-bottom: 14px;">السؤال 3: أي من وثائق أمن المعلومات التالية تُعتبر اختيارية وتقدم نصائح وتوصيات استرشادية دون أن تكون ملزمة قانونياً للموظفين؟</p>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'cism-q3-exp')">أ) سياسة أمن المعلومات (Security Policy).</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'cism-q3-exp')">ب) المعايير الأمنية (Security Standards).</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, true, 'cism-q3-exp')">ج) الإرشادات الأمنية (Security Guidelines).</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'cism-q3-exp')">د) خطوط الأساس الأمنية (Security Baselines).</button>
+            <div id="cism-q3-exp" class="explanation-box">
+                <strong>التفسير الرسمي لـ ISACA:</strong> الإجابة الصحيحة هي (ج). في هرمية وثائق الحوكمة، الإرشادات (Guidelines) هي الوثيقة الوحيدة الاختيارية (Discretionary) التي تقدم أفضل الممارسات المقترحة، بينما السياسات والمعايير وخطوط الأساس والإجراءات كلها وثائق إلزامية ملزمة قانونياً (Mandatory).
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav-bar">
+        <button class="nav-btn-lg" onclick="switchTab('view-d2')">⏮️ السابق: المجال 2</button>
+        <button class="nav-btn-lg nav-btn-primary-lg" onclick="switchTab('view-d4')">المجال 4: إدارة الحوادث ➔</button>
+    </div>
+</div>
+
+<!-- VIEW 4: DOMAIN 4 -->
+<div id="view-d4" class="view-section">
+    <div class="teacher-pedagogy-box">
+        <div class="teacher-pedagogy-header">🚨 شرح معلم خاص: خطة الاستجابة للطوارئ وسلسلة الأدلة الجنائية (Chain of Custody)</div>
+        <p class="section-text">
+            عندما يتعرض البنك لاختراق نشط، تتجه كل الأنظار إلى CISO. كيف تدير الأزمة كالجنرال المحترف؟
+        </p>
+        <div class="analogy-card">
+            <strong>مراحل الاستجابة للحوادث الست (Incident Response Lifecycle):</strong><br>
+            1. <strong>Preparation (الاستعداد):</strong> تجهيز فريق الطوارئ (CSIRT) قبل وقوع أي هجوم وتدريبهم بمحاكاة الطوارئ (Tabletop Exercises).<br>
+            2. <strong>Identification (الرصد):</strong> التحقق من أن الإنذار حقيقي وتحديد حجم الضرر.<br>
+            3. <strong>Containment (الاحتواء - الخطوة الأهم!):</strong> عزل السيرفر المصاب فوراً عن الشبكة لمنع الفيروس من الانتشار، <strong>مع عدم إطفاء الجهاز</strong> للمحافظة على الذاكرة العشوائية RAM سليمة لتحقيقات الشرطة!<br>
+            4. <strong>Eradication (الاستئصال):</strong> مسح البرمجيات الخبيثة وسد الثغرة بالكامل.<br>
+            5. <strong>Recovery (التعافي):</strong> إعادة تشغيل الأنظمة ومراقبتها بدقة.<br>
+            6. <strong>Lessons Learned (الدروس المستفادة):</strong> اجتماع مراجعة شامل لتحديث السياسات ومنع تكرار الحادث.<br>
+            • <strong>سلسلة الحيازة (Chain of Custody):</strong> توثيق كل من لمس الهارد ديسك والأدلة الرقمية بالدقيقة والثانية لتقبلها المحكمة الجنائية كدليل قانوني ضد الهاكر!
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="block-header">
+            <div class="block-num-circle">4</div>
+            <h2 class="block-title">المجال 4: إدارة حوادث أمن المعلومات واستمرارية الأعمال (30% من الامتحان)</h2>
+        </div>
+
+        <div class="grid-cards">
+            <div class="card-3d">
+                <h4 style="color: #38bdf8;">1. مقاييس أوقات التعافي الحرجة</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    • <strong>RTO (Recovery Time Objective):</strong> الوقت المستهدف لإعادة تشغيل الخدمة.<br>
+                    • <strong>RPO (Recovery Point Objective):</strong> أقصى كمية بيانات مسموح بفقدانها مقاسة بالزمن.<br>
+                    • <strong>MTD (Maximum Tolerable Downtime):</strong> أقصى فترة توقف يمكن أن تتحملها الشركة قبل الإفلاس التام! (يجب دائماً أن يكون: RTO &lt; MTD).
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #10b981;">2. خطة الاتصال أثناء الأزمات (Crisis Communication)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    يُحظر تماماً على أي موظف أو مهندس التحدث للصحافة أو نشر تغريدات أثناء الاختراق!
+                    يتم تفعيل <strong>Crisis Communication Plan</strong>: متحدث رسمي معتمد واحد فقط، مع إخطار الجهات الرقابية الحكومية خلال المهلة القانونية الصارمة (مثل إخطار GDPR خلال 72 ساعة كحد أقصى).
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #a855f7;">3. خطط الطوارئ الثلاث المتكاملة</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    • <strong>IRP (خطة الاستجابة للحوادث):</strong> تركز على تحييد الهجوم السيبراني نفسه.<br>
+                    • <strong>BCP (خطة استمرارية الأعمال):</strong> تركز على استمرار عمليات الشركة الحيوية (كإجراء المعاملات ورقياً أثناء تعطل السيرفرات).<br>
+                    • <strong>DRP (خطة التعافي من الكوارث):</strong> تركز على استعادة مراكز البيانات والبنية التحتية الفنية.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz D4 -->
+    <div class="quiz-wrapper">
+        <h3 style="color: #fff; margin-bottom: 15px;">🧠 اختبار تقييمي معتمد: أسئلة سيناريو المجال الرابع (CISM)</h3>
+        <div class="question-card">
+            <p style="color: #fff; font-weight: 600; margin-bottom: 14px;">السؤال 4: اكتشف فريق الأمن هجوماً نشطاً من نوع فيروسات الفدية (Ransomware) يقوم بتشفير ملفات أحد الخوادم المتصلة بالشبكة الداخلية للبنك. ما هو الإجراء الفوري الأول الذي يجب أن يقوم به فريق الاستجابة للحوادث؟</p>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'cism-q4-exp')">أ) دفع الفدية المالية المطلوبة فوراً عبر العملات الرقمية.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, true, 'cism-q4-exp')">ب) احتواء الهجوم (Containment) عن طريق فصل الخادم المصاب عن الشبكة فوراً لمنع انتشار الفيروس إلى بقية خوادم البنك.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'cism-q4-exp')">ج) عمل إعادة تهيئة (Format) للخادم وحذف كافة الأدلة الرقمية.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'cism-q4-exp')">د) كتابة بيان صحفي ونشره على منصات التواصل الاجتماعي.</button>
+            <div id="cism-q4-exp" class="explanation-box">
+                <strong>التفسير الرسمي لـ ISACA:</strong> الإجابة الصحيحة هي (ب). مرحلة الاحتواء (Containment) هي الأولوية الحتمية القصوى بمجرد اكتشاف الهجوم النشط؛ حيث يعزل الخادم عن الشبكة لوقف الحركة العرضية (Lateral Movement) للهجوم، مع المحافظة على الخادم دون إطفاء لفحص الذاكرة واستخراج الأدلة الجنائية.
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav-bar">
+        <button class="nav-btn-lg" onclick="switchTab('view-d3')">⏮️ السابق: المجال 3</button>
+        <button class="nav-btn-lg nav-btn-primary-lg" onclick="switchTab('view-toc')">🎉 إتمام كورس CISM بنجاح والعودة للفهرس ➔</button>
+    </div>
+</div>
+
+</div>
+
+<script>
+function switchTab(viewId) {
+    document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.pill-btn').forEach(el => el.classList.remove('active'));
+    
+    const targetView = document.getElementById(viewId);
+    if (targetView) targetView.classList.add('active');
+    
+    const targetPill = document.getElementById('pill-' + viewId);
+    if (targetPill) targetPill.classList.add('active');
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function handleQuiz(btn, isCorrect, explanationId) {
+    const parent = btn.parentElement;
+    const buttons = parent.querySelectorAll('.option-choice-btn');
+    buttons.forEach(b => {
+        b.disabled = true;
+        b.style.cursor = 'default';
+    });
+    
+    const expBox = document.getElementById(explanationId);
+    if (isCorrect) {
+        btn.classList.add('correct');
+        if (expBox) { expBox.className = 'explanation-box show success'; }
+    } else {
+        btn.classList.add('incorrect');
+        if (expBox) { expBox.className = 'explanation-box show error'; }
+    }
+}
+</script>
+</body>
+</html>
