@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مسار هندسة وتطبيقات الذكاء الاصطناعي (Azure AI Track)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0f1d;
+            --bg-card: #111827;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #1e293b;
+            --accent: #06b6d4;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            line-height: 1.8;
+            padding: 30px 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .hero {
+            background: linear-gradient(135deg, #131d35 0%, #0c1322 100%);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 45px 30px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            position: relative;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: #06b6d422;
+            color: #06b6d4;
+            border: 1px solid #06b6d466;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .hero-title {
+            font-size: 2.3rem;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 900;
+        }
+        .hero-subtitle {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .course-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+        .card-badge {
+            display: inline-block;
+            align-self: flex-start;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .card-title {
+            font-size: 1.4rem;
+            color: #fff;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #64748b;
+            font-size: 0.88rem;
+            padding-top: 15px;
+            border-top: 1px solid #1e293b;
+            margin-bottom: 20px;
+        }
+        .card-btn {
+            display: block;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: opacity 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .card-btn:hover { opacity: 0.9; }
+        footer {
+            text-align: center;
+            color: #475569;
+            font-size: 0.9rem;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #1e293b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <span class="hero-badge">🤖 المسار التخصصي الأول: هندسة الذكاء الاصطناعي</span>
+            <h1 class="hero-title">مسار هندسة وتطبيقات الذكاء الاصطناعي (Azure AI Track)</h1>
+            <p class="hero-subtitle">برنامج تخصصي متكامل يأخذك من المفاهيم الأساسية إلى المستوى الهندسي الاحترافي لبناء وتأمين حلول الذكاء الاصطناعي التوليدي والـ RAG على سحابة مايكروسوفت أزور.</p>
+        </div>
+
+        <div class="grid">
+            
+        <div class="course-card" style="border-top: 4px solid #06b6d4;">
+            <div class="card-badge" style="background: #06b6d422; color: #06b6d4; border: 1px solid #06b6d466;">
+                المستوى التأسيسي المعتمد • AI-900
+            </div>
+            <h2 class="card-title">Microsoft Azure AI Fundamentals</h2>
+            <p class="card-desc">أساسيات الذكاء الاصطناعي الشاملة: أخلاقيات الذكاء المسؤول، خوارزميات تعلم الآلة (Regression & Classification)، الرؤية الحاسوبية، معالجة اللغات الطبيعية والكلام، والذكاء الاصطناعي التوليدي.</p>
+            <div class="card-meta">
+                <span>⏱️ 5 مسارات تفاعلية مع محاكيات</span>
+                <span>🎯 من الصفر حتى الاحتراف</span>
+            </div>
+            <a href="01_AI-900_Azure_AI_Fundamentals/index.html" class="card-btn" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+                ابدأ دراسة الكورس الآن ➔
+            </a>
+        </div>
+        
+        <div class="course-card" style="border-top: 4px solid #8b5cf6;">
+            <div class="card-badge" style="background: #8b5cf622; color: #8b5cf6; border: 1px solid #8b5cf666;">
+                المستوى الهندسي البرمجي • AI-102
+            </div>
+            <h2 class="card-title">Azure AI Engineer Associate</h2>
+            <p class="card-desc">تصميم وبرمجة أنظمة الذكاء الاصطناعي المتقدمة: أمان الموارد بدون مفاتيح (Managed Identity)، تشغيل النماذج على الحافة (Edge & ONNX)، هندسة المحادثات (CLU)، البحث المتجهي والهجين (Azure AI Search)، وتطبيقات الـ RAG مع Azure OpenAI.</p>
+            <div class="card-meta">
+                <span>⏱️ 5 مسارات هندسية تطبيقية</span>
+                <span>🎯 مستوى مهندس محترف</span>
+            </div>
+            <a href="02_AI-102_Azure_AI_Engineer_Associate/index.html" class="card-btn" style="background: linear-gradient(135deg, #8b5cf6, #6d28d9);">
+                ابدأ دراسة الكورس الآن ➔
+            </a>
+        </div>
+        
+        </div>
+
+        <footer>
+            منهج تدريبي معتمد - تم إعداده وفق أعلى المعايير الدولية الاحترافية
+        </footer>
+    </div>
+</body>
+</html>

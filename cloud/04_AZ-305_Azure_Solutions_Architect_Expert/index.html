@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Course AZ-305T00-A: Designing Microsoft Azure Infrastructure Solutions | الدليل المعماري الشامل</title>
+    <style>
+:root {
+    --bg-body: #080c14; --bg-surface: #0f172a; --bg-card: #141f36; --bg-subtle: #1c2b4d;
+    --text-main: #f8fafc; --text-muted: #94a3b8; --accent-cyan: #38bdf8; --accent-blue: #2563eb;
+    --accent-green: #10b981; --accent-purple: #a855f7; --accent-amber: #f59e0b; --accent-red: #ef4444;
+    --border: #233554; --shadow-3d: 0 20px 35px -10px rgba(0, 0, 0, 0.6), 0 0 15px rgba(56, 189, 248, 0.1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Cairo", sans-serif; }
+body { background-color: var(--bg-body); color: var(--text-main); line-height: 1.85; padding-bottom: 80px; }
+.container { max-width: 1150px; margin: 0 auto; padding: 0 16px; }
+
+.top-navbar {
+    position: sticky; top: 0; z-index: 999;
+    background: rgba(15, 23, 42, 0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border); padding: 12px 16px; margin-bottom: 25px;
+}
+.nav-content {
+    max-width: 1150px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+}
+.nav-btn {
+    background: var(--bg-subtle); border: 1px solid var(--border); color: var(--text-main);
+    padding: 8px 14px; border-radius: 8px; text-decoration: none; font-size: 0.88rem; font-weight: 600;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s;
+}
+.nav-btn:hover, .nav-btn.active { border-color: var(--accent-cyan); color: var(--accent-cyan); background: rgba(56, 189, 248, 0.1); }
+.module-pills { display: flex; gap: 6px; overflow-x: auto; padding: 4px 0; scrollbar-width: none; }
+.module-pills::-webkit-scrollbar { display: none; }
+.pill-btn {
+    background: var(--bg-card); border: 1px solid var(--border); color: var(--text-muted);
+    padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; white-space: nowrap; cursor: pointer; transition: all 0.2s;
+}
+.pill-btn.active { color: #fff; background: var(--accent-blue); border-color: var(--accent-cyan); font-weight: 700; }
+
+.hero-banner {
+    background: linear-gradient(135deg, #101c36 0%, #0a1122 100%);
+    border: 1px solid var(--border); border-radius: 20px;
+    padding: 35px 25px; text-align: center; margin-bottom: 30px; box-shadow: var(--shadow-3d);
+}
+.badge-cert {
+    display: inline-block; background: rgba(56, 189, 248, 0.12); color: var(--accent-cyan);
+    border: 1px solid var(--accent-cyan); padding: 6px 18px; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 700; margin-bottom: 15px; letter-spacing: 0.5px;
+}
+.hero-title { font-size: 2.2rem; color: #fff; margin-bottom: 12px; font-weight: 800; }
+.hero-subtitle { color: var(--text-muted); font-size: 1.05rem; max-width: 900px; margin: 0 auto 20px auto; line-height: 1.8; }
+.hero-meta { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; font-size: 0.88rem; margin-top: 15px; }
+.hero-meta-item { background: rgba(15, 23, 42, 0.6); padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border); color: #cbd5e1; }
+
+.view-section { display: none; }
+.view-section.active { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.content-block {
+    background: var(--bg-surface); border: 1px solid var(--border);
+    border-radius: 18px; padding: 30px 25px; margin-bottom: 30px;
+}
+.block-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
+.block-num-circle {
+    width: 40px; height: 40px; border-radius: 12px; background: var(--accent-blue);
+    color: #fff; display: flex; align-items: center; justify-content: center;
+    font-weight: bold; font-size: 1.2rem; flex-shrink: 0;
+}
+.block-title { font-size: 1.45rem; color: #fff; font-weight: 700; }
+.section-text { font-size: 1.02rem; color: #cbd5e1; line-height: 1.9; margin-bottom: 18px; }
+
+.teacher-pedagogy-box {
+    border: 2px solid var(--accent-cyan);
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.07) 0%, #0f172a 100%);
+    border-radius: 18px; padding: 28px 24px; margin: 25px 0 35px 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+.teacher-pedagogy-header {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 15px;
+    color: var(--accent-cyan); font-size: 1.35rem; font-weight: 800;
+}
+
+.analogy-card {
+    background: rgba(20, 31, 54, 0.85); border-right: 4px solid var(--accent-cyan);
+    border-radius: 0 12px 12px 0; padding: 18px 20px; margin: 18px 0;
+    color: #e2e8f0; font-size: 0.98rem; line-height: 1.85;
+}
+.analogy-card strong { color: var(--accent-cyan); }
+
+.diagram-surface-3d {
+    background: linear-gradient(145deg, #162444 0%, #0d172e 100%);
+    border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 20px;
+    padding: 30px 24px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+    margin: 30px 0;
+}
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; margin: 20px 0; }
+.card-3d {
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 24px; transition: all 0.25s ease;
+    display: flex; flex-direction: column; justify-content: space-between;
+}
+.card-3d:hover { transform: translateY(-4px); border-color: var(--accent-cyan); box-shadow: 0 12px 25px rgba(0,0,0,0.5); }
+.card-tip {
+    background: rgba(15, 23, 42, 0.7); border-right: 3px solid var(--accent-cyan);
+    padding: 10px 14px; border-radius: 0 8px 8px 0; font-size: 0.88rem; color: #cbd5e1; margin-top: 14px;
+}
+
+.code-snippet {
+    background: #060a12; border: 1px solid #1e2d4a; border-radius: 10px;
+    padding: 16px; font-family: Consolas, "Courier New", monospace; font-size: 0.9rem;
+    color: #38bdf8; overflow-x: auto; margin: 16px 0; direction: ltr; text-align: left;
+}
+
+.table-responsive { width: 100%; overflow-x: auto; margin: 22px 0; border: 1px solid var(--border); border-radius: 12px; }
+table.spec-table { width: 100%; border-collapse: collapse; text-align: right; font-size: 0.92rem; }
+table.spec-table th { background: #192744; color: var(--accent-cyan); padding: 14px 16px; font-weight: 700; border-bottom: 2px solid var(--border); }
+table.spec-table td { padding: 12px 16px; border-bottom: 1px solid #1c2b4d; color: #cbd5e1; }
+table.spec-table tr:hover { background: rgba(30, 41, 59, 0.5); }
+
+.quiz-wrapper { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 20px; padding: 30px 24px; margin: 40px 0; }
+.question-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 22px; margin-bottom: 22px; }
+.option-choice-btn {
+    background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border); color: var(--text-main);
+    padding: 14px 18px; border-radius: 10px; text-align: right; font-size: 0.95rem;
+    cursor: pointer; width: 100%; margin-bottom: 10px; transition: all 0.2s; display: block;
+}
+.option-choice-btn:hover { border-color: var(--accent-cyan); background: var(--bg-subtle); }
+.option-choice-btn.correct { background: rgba(16, 185, 129, 0.25) !important; border-color: var(--accent-green) !important; color: #a7f3d0 !important; font-weight: 700; }
+.option-choice-btn.incorrect { background: rgba(239, 68, 68, 0.25) !important; border-color: var(--accent-red) !important; color: #fecaca !important; }
+.explanation-box { margin-top: 14px; padding: 12px 16px; border-radius: 10px; font-size: 0.92rem; display: none; line-height: 1.7; }
+.explanation-box.show { display: block; }
+.explanation-box.success { background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green); color: #6ee7b7; }
+.explanation-box.error { background: rgba(239, 68, 68, 0.15); border: 1px solid var(--accent-red); color: #fca5a5; }
+
+.bottom-nav-bar {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding: 20px 0; margin-top: 40px; border-top: 1px solid var(--border); flex-wrap: wrap;
+}
+.nav-btn-lg {
+    background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main);
+    padding: 12px 22px; border-radius: 12px; font-size: 0.95rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+}
+.nav-btn-lg:hover { border-color: var(--accent-cyan); }
+.nav-btn-primary-lg { background: var(--accent-blue); color: #fff; border-color: var(--accent-cyan); }
+</style>
+</head>
+<body>
+
+<div class="top-navbar">
+    <div class="nav-content">
+        <div style="display: flex; gap: 8px;">
+            <a href="../index.html" class="nav-btn">🏠 البوابة الرئيسية</a>
+            <button class="nav-btn" onclick="switchTab('view-toc')">📚 الفهرس العام</button>
+        </div>
+        <div class="module-pills">
+            <button class="pill-btn active" id="pill-view-toc" onclick="switchTab('view-toc')">نظرة عامة والامتحان</button>
+            <button class="pill-btn" id="pill-view-lp1" onclick="switchTab('view-lp1')">المسار 1: معمارية الهويات والحوكمة</button>
+            <button class="pill-btn" id="pill-view-lp2" onclick="switchTab('view-lp2')">المسار 2: معمارية البيانات و Cosmos DB</button>
+            <button class="pill-btn" id="pill-view-lp3" onclick="switchTab('view-lp3')">المسار 3: استمرارية الأعمال والتعافي HA/DR</button>
+            <button class="pill-btn" id="pill-view-lp4" onclick="switchTab('view-lp4')">المسار 4: معمارية البنية التحتية Zero Trust</button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- VIEW 0: TOC -->
+<div id="view-toc" class="view-section active">
+    <div class="hero-banner">
+        <div class="badge-cert">Official Microsoft Course: AZ-305T00-A</div>
+        <h1 class="hero-title">Designing Microsoft Azure Infrastructure Solutions (AZ-305)</h1>
+        <p class="hero-subtitle">
+            الدليل التدريبي الرسمي المعتمد لكبار مهندسي المعمارية السحابية (Azure Solutions Architect Expert). يشرح المنهج بأسلوب المعلم الاستشاري كيفية تصميم الأنظمة السحابية الضخمة والمؤسسية: معمارية مناطق الهبوط (Landing Zones)، الحوسبة السحابية المقاومة للكوارث، موازنة التكلفة مقابل الأداء، وحماية البنوك والمؤسسات بمنهجية انعدام الثقة (Zero Trust).
+        </p>
+        <div class="hero-meta">
+            <div class="hero-meta-item">⏱️ كود الدورة: <strong>AZ-305T00-A</strong></div>
+            <div class="hero-meta-item">📅 مدة التدريب المعتمدة: <strong>4 أيام (32 ساعة تدريبية معتمدة)</strong></div>
+            <div class="hero-meta-item">🎯 كود الامتحان: <strong>AZ-305</strong> (درجة النجاح: 700 / 1000)</div>
+            <div class="hero-meta-item">🏆 اللقب النهائي: <strong>Microsoft Certified: Azure Solutions Architect Expert</strong></div>
+        </div>
+    </div>
+
+    <!-- Foundational Teacher Box on TOC -->
+    <div class="teacher-pedagogy-box">
+        <div class="teacher-pedagogy-header">🏛️ مدخل المعلم الخاص: كيف يفكر مهندس المعمارية السحابية (Solutions Architect)؟</div>
+        <p class="section-text">
+            الفرق بين مهندس الإدارة (Administrator) ومهندس المعمارية (Architect) كالفرق بين:
+            <strong>البنّاء الذي يرص الطوب ويبني الحوائط</strong>، و<strong>المهندس المعماري الاستشاري الذي يرسم مخطط ناطحة السحاب</strong>!
+        </p>
+        <div class="analogy-card">
+            <strong>قاعدة المفاضلة الذهبية (The Art of Trade-Offs):</strong><br>
+            في الحياة الهندسية الواقعية وفي امتحان AZ-305، لا يوجد شيء اسمه "الحل المثالي المجاني"!<br>
+            كل قرار معماري هو ميزان ذو كفتين:
+            <br>• إذا أردت نظاماً لا ينقطع أبداً بنسبة 99.999%، فستدفع تكلفة مالية مضاعفة 5 مرات لنشر السيرفرات في قارات متعددة!<br>
+            • إذا طلبت الإدارة خفض التكلفة إلى النصف، فيجب أن تقنعهم بقبول فترة توقف (Downtime) لمدة 30 دقيقة في حال وقوع زلزال مدمر!<br>
+            <strong>دورك كأركيتكت:</strong> أن تستمع لأهداف العميل وميزانيته، وتختار أفضل معمارية تحقق أهدافه بأقل تكلفة ممكنة وأعلى كفاءة أمنية!
+        </div>
+    </div>
+
+    <div class="diagram-surface-3d">
+        <h3 style="color: #fff; margin-bottom: 15px;">📊 المخطط الرسمي لتوزيع أوزان مهارات امتحان AZ-305 (Official Blueprint)</h3>
+        <div class="table-responsive">
+            <table class="spec-table">
+                <thead>
+                    <tr><th>المسار التعليمي الرسمي في Microsoft Learn</th><th>المجال المعماري الاستشاري</th><th>الوزن في الامتحان</th><th>المكونات المعمارية الأساسية</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>المسار 1: Design identity, governance, and monitoring</strong></td><td>تصميم الهويات والحوكمة ومناطق الهبوط</td><td>25 - 30%</td><td>Enterprise Landing Zones, Entra ID B2B/B2C, Azure Policy Initiatives, Cost Budgets</td></tr>
+                    <tr><td><strong>المسار 2: Design data storage solutions</strong></td><td>تصميم معمارية البيانات وقواعد البيانات</td><td>20 - 25%</td><td>Azure SQL vs Managed Instance, Cosmos DB 5 Consistency Levels, Data Lakes</td></tr>
+                    <tr><td><strong>المسار 3: Design business continuity solutions</strong></td><td>تصميم استمرارية الأعمال والتعافي من الكوارث</td><td>15 - 20%</td><td>HA vs DR, RTO & RPO, Azure Site Recovery, Multi-region Active-Active Architecture</td></tr>
+                    <tr><td><strong>المسار 4: Design infrastructure solutions</strong></td><td>تصميم البنية التحتية والشبكات والأمان</td><td>25 - 30%</td><td>Hub-and-Spoke Topology, Azure Firewall, Application Gateway, Zero Trust Architecture</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="grid-cards">
+        <div class="card-3d" onclick="switchTab('view-lp1')" style="cursor: pointer;">
+            <div>
+                <span style="color: var(--accent-cyan); font-weight: bold; font-size: 0.85rem;">المسار 1 (25-30%)</span>
+                <h3 style="color: #fff; margin: 8px 0 12px 0;">معمارية الهويات والحوكمة المؤسسية</h3>
+                <p style="color: #cbd5e1; font-size: 0.93rem;">تصميم مناطق الهبوط (Azure Landing Zones)، أطر الحوكمة الصارمة للشركات القابضة، تكامل الهويات الهجينة، وإدارة التكلفة السحابية.</p>
+            </div>
+            <button class="nav-btn" style="margin-top: 15px;">دراسة المسار ➔</button>
+        </div>
+
+        <div class="card-3d" onclick="switchTab('view-lp2')" style="cursor: pointer;">
+            <div>
+                <span style="color: var(--accent-green); font-weight: bold; font-size: 0.85rem;">المسار 2 (20-25%)</span>
+                <h3 style="color: #fff; margin: 8px 0 12px 0;">معمارية البيانات و Cosmos DB</h3>
+                <p style="color: #cbd5e1; font-size: 0.93rem;">مقارنة قواعد البيانات العلاقية SQL واللا علاقية NoSQL، واختيار مستويات التناسق الخمسة في Cosmos DB وفق نظرية CAP Theorem.</p>
+            </div>
+            <button class="nav-btn" style="margin-top: 15px;">دراسة المسار ➔</button>
+        </div>
+
+        <div class="card-3d" onclick="switchTab('view-lp3')" style="cursor: pointer;">
+            <div>
+                <span style="color: var(--accent-purple); font-weight: bold; font-size: 0.85rem;">المسار 3 (15-20%)</span>
+                <h3 style="color: #fff; margin: 8px 0 12px 0;">استمرارية الأعمال والتعافي HA/DR</h3>
+                <p style="color: #cbd5e1; font-size: 0.93rem;">هندسة التوافر العالي 99.99%، حسابات وقت التعافي RTO ونقطة فقد البيانات RPO، والنسخ الجغرافي النشط مع Azure Site Recovery.</p>
+            </div>
+            <button class="nav-btn" style="margin-top: 15px;">دراسة المسار ➔</button>
+        </div>
+
+        <div class="card-3d" onclick="switchTab('view-lp4')" style="cursor: pointer;">
+            <div>
+                <span style="color: var(--accent-amber); font-weight: bold; font-size: 0.85rem;">المسار 4 (25-30%)</span>
+                <h3 style="color: #fff; margin: 8px 0 12px 0;">معمارية الشبكات و Zero Trust</h3>
+                <p style="color: #cbd5e1; font-size: 0.93rem;">شبكات المركز والأطراف (Hub-and-Spoke)، جدران الحماية المركزية، تأمين تطبيقات الويب بـ WAF، وتطبيق مبدأ انعدام الثقة الشامل.</p>
+            </div>
+            <button class="nav-btn" style="margin-top: 15px;">دراسة المسار ➔</button>
+        </div>
+    </div>
+</div>
+
+<!-- VIEW 1: LP1 -->
+<div id="view-lp1" class="view-section">
+    <div class="teacher-pedagogy-box">
+        <div class="teacher-pedagogy-header">🏛️ شرح معلم خاص: ما هي منطقة الهبوط (Azure Landing Zone) ولماذا هي الخطوة الأولى؟</div>
+        <p class="section-text">
+            تخيل طائرة هليكوبتر قادمة لتهبط في مطار دولي. هل تهبط وسط الرمال؟ بالطبع لا! هناك مهبط طائرات مجهز بإضاءة ليلية، وبرج مراقبة، ومحطة إطفاء جاهزة، وفرق أمان تفحص الركاب.<br>
+            <strong>منطقة الهبوط (Azure Landing Zone) في عالم السحابة:</strong>
+        </p>
+        <div class="analogy-card">
+            هي البيئة الأساسية المجهزة سلفاً وفق أفضل ممارسات مايكروسوفت (Cloud Adoption Framework - CAF)؛ بحيث عندما يأتي فريق تطوير ويريد إطلاق تطبيق جديد، يجد أمامه شبكات جاهزة ومؤمنة، وسياسات حوكمة مطبقة تلقائياً، ومستودعات سجلات مربوطة، فلا يبدأ من الصفر ولا يرتكب أخطاء أمنية كارثية!
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="block-header">
+            <div class="block-num-circle">1</div>
+            <h2 class="block-title">المسار 1: تصميم معمارية الهويات والحوكمة ومناطق الهبوط المؤسسية</h2>
+        </div>
+
+        <div class="grid-cards">
+            <div class="card-3d">
+                <h4 style="color: #38bdf8;">1. تصميم الهويات الهجينة (Hybrid Identity Architecture)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    عندما تمتلك الشركة خوادم محلية On-Premises وتريد ربط موظفيها بالسحابة:
+                    <br>• <strong>Password Hash Synchronization (PHS):</strong> الحل الأسهل والأكثر مرونة وموصى به لمايكروسوفت؛ حيث يتم تشفير هاش كلمة المرور ومزامنته للسحابة، فيسجل الموظف دخوله حتى لو انقطع اتصال الإنترنت بالمقر المحلي!
+                    <br>• <strong>Pass-through Authentication (PTA):</strong> للشركات التي تشترط ألا تخرج أي كلمة سر خارج خوادمها الداخلية نهائياً.
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #10b981;">2. مبادرات الحوكمة والسياسات (Policy Initiatives / Blueprints)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    بدلاً من تطبيق 50 سياسة منفردة لكل مشروع، نجمعها في حزمة واحدة تسمى <strong>Initiative (مبادرة)</strong>:
+                    مثل مبادرة "الامتثال المصرفي PCI-DSS" التي تضم تشفير الأقراص، وعزل الشبكات، وتفعيل سجلات التدقيق، وتطبيقها بنقرة واحدة على 100 اشتراك فرعي للشركة.
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #a855f7;">3. إدارة التكلفة والميزانيات (Cost Management Architecture)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    الأركيتكت مسؤول عن منع نزيف الأموال:
+                    <br>• وضع ميزانيات صلبة (Budgets) مع تنبيهات عند استهلاك 80% و 100%.
+                    <br>• استخدام <strong>Azure Reserved Instances (الحجز المسبق لمدة 1 إلى 3 سنوات)</strong> لتوفير حتى 72% من تكلفة الخوادم الثابتة مقارنة بالدفع الفوري.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz LP1 -->
+    <div class="quiz-wrapper">
+        <h3 style="color: #fff; margin-bottom: 15px;">🧠 اختبار تقييمي معتمد: أسئلة سيناريو المسار الأول (AZ-305)</h3>
+        <div class="question-card">
+            <p style="color: #fff; font-weight: 600; margin-bottom: 14px;">السؤال 1: بنك تجاري يمتلك Active Directory محلياً ويريد مزامنة هويات موظفيه مع Azure Entra ID. يشترط البنك إمكانية تسجيل دخول الموظفين للخدمات السحابية في حال انقطاع كابل الاتصال المحلي بالكامل (High Availability)، مع دعم ميزة تسريب كلمات المرور المسروقة (Leaked Credentials Detection). ما هي المعمارية الموصى بها؟</p>
+            <button class="option-choice-btn" onclick="handleQuiz(this, true, 'az305-q1-exp')">أ) استخدام تقنية مزامنة تجزئة كلمة المرور (Password Hash Synchronization - PHS) عبر Microsoft Entra Connect.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'az305-q1-exp')">ب) استخدام المصادقة التمريرية Pass-through Authentication (PTA).</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'az305-q1-exp')">ج) إنشاء حسابات منفصلة تماماً بكلمات مرور جديدة لكل موظف على السحابة.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'az305-q1-exp')">د) إلغاء كلمات المرور بالكامل والسماح للجميع بالدخول الحر.</button>
+            <div id="az305-q1-exp" class="explanation-box">
+                <strong>التفسير المعماري الرسمي لمايكروسوفت:</strong> الإجابة الصحيحة هي (أ). تتميز PHS بالمرونة العالية؛ فالمصادقة تتم مباشرة على السحابة دون الحاجة للتواصل مع السيرفر المحلي في لحظة الدخول، كما أنها التقنية الوحيدة التي تتيح لمايكروسوفت مقارنة تجزئة الكلمات بقوائم الكلمات المسروقة عالمياً وتنبيه المسؤولين فوراً.
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav-bar">
+        <button class="nav-btn-lg" onclick="switchTab('view-toc')">⏮️ العودة للفهرس</button>
+        <button class="nav-btn-lg nav-btn-primary-lg" onclick="switchTab('view-lp2')">المسار 2: معمارية البيانات و Cosmos DB ➔</button>
+    </div>
+</div>
+
+<!-- VIEW 2: LP2 -->
+<div id="view-lp2" class="view-section">
+    <div class="teacher-pedagogy-box">
+        <div class="teacher-pedagogy-header">💾 شرح معلم خاص: مستويات التناسق في Cosmos DB (سر الامتحان الأكبر!)</div>
+        <p class="section-text">
+            قاعدة بيانات <strong>Azure Cosmos DB</strong> موزعة عالمياً في كل القارات.
+            عندما يقوم شخص في نيويورك بتحديث بياناته، كيف يراها شخص في طوكيو أو لندن في نفس اللحظة؟
+            وفق نظرية <strong>CAP Theorem</strong>، لا يمكنك الحصول على أعلى سرعة مع أعلى دقة تناسق في نفس الوقت؛ لذلك وضعت مايكروسوفت 5 مستويات دقيقة للاختيار:
+        </p>
+        <div class="analogy-card">
+            <strong>تشبيه مباراة كرة القدم الممتع:</strong><br>
+            1. <strong>Strong (التناسق القوي):</strong> أنت تشاهد المباراة جالساً داخل مدرج الاستاد! ترى الهدف في نفس جزء الثانية الحقيقي. (أعلى دقة، لكن أقل سرعة وأعلى تكلفة).<br>
+            2. <strong>Bounded Staleness (الجمود المقيد):</strong> تشاهد المباراة على التلفاز مع تأخير بث 5 ثوانٍ بالضبط! متأخر قليلاً ولكن بترتيب زمني سليم 100%.<br>
+            3. <strong>Session (تناسق الجلسة - الافتراضي):</strong> أنت نفسك من سدد الكرة في المرمى! أنت متأكد أنك سجلت هدفاً (تقرأ ما كتبته أنت)، بينما الجماهير البعيدة قد تتأخر ثوانٍ حتى تعرف النتيجة.<br>
+            4. <strong>Consistent Prefix (البادئة المتناسقة):</strong> تضمن عدم خربطة الأحداث! ترى (تسديدة ➔ ثم دخول الكرة ➔ ثم احتفال اللاعب)، ولن ترى أبداً اللاعب يحتفل قبل أن تسدد الكرة!<br>
+            5. <strong>Eventual (التناسق النهائي):</strong> تقرأ عن نتيجة المباراة في جريدة الصباح غداً! أرخص وأسرع أداء على الإطلاق، مثالي لمنشورات فيسبوك وعداد المشاهدات والإعجابات!
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="block-header">
+            <div class="block-num-circle">2</div>
+            <h2 class="block-title">المسار 2: تصميم معمارية تخزين البيانات وقواعد البيانات المؤسسية</h2>
+        </div>
+
+        <div class="grid-cards">
+            <div class="card-3d">
+                <h4 style="color: #38bdf8;">1. خيارات قواعد بيانات SQL العلاقية</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    • <strong>Azure SQL Database:</strong> قاعدة بيانات سحابية مفردة مُدارة بالكامل (PaaS)، تدعم التحجيم التلقائي، مثالية للتطبيقات السحابية الحديثة.<br>
+                    • <strong>Azure SQL Managed Instance:</strong> توافق 100% مع خوادم SQL القديمة في الشركة (يدعم SQL Agent و CLR و Cross-Database Queries) لنقل التطبيقات القديمة للسحابة دون تعديل حرف في الكود (Lift-and-Shift)!
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #10b981;">2. مفتاح التقسيم في Cosmos DB (Partition Key)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    السر المعماري لأداء Cosmos DB هو اختيار <strong>Partition Key</strong> ذو تباين عالٍ (High Cardinality):
+                    يوزع البيانات بالتساوي على الخوادم، ويمنع نشوء "أقسام ساخنة (Hot Partitions)" تسبب بطء الاستعلامات وتجاوز وحدات الـ RU/s المحددة.
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #a855f7;">3. بحيرات البيانات والتحليلات الضخمة (Data Lake & Synapse)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    تصميم مستودعات البيانات الضخمة (Big Data Architecture):
+                    تخزين البيانات الخام بتكلفة منخفضة في <strong>Azure Data Lake Storage Gen2</strong> بنظام مجلدات شجري (Hierarchical Namespace)، ومعالجتها عبر محركات <strong>Azure Synapse Analytics</strong> للاستعلام اللحظي بـ Serverless SQL.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz LP2 -->
+    <div class="quiz-wrapper">
+        <h3 style="color: #fff; margin-bottom: 15px;">🧠 اختبار تقييمي معتمد: أسئلة سيناريو المسار الثاني (AZ-305)</h3>
+        <div class="question-card">
+            <p style="color: #fff; font-weight: 600; margin-bottom: 14px;">السؤال 2: منصة تجارة إلكترونية عالمية تستخدم Cosmos DB وتطلب أن يرى كل متسوق فوراً المنتجات التي أضافها هو بنفسه إلى سلة التسوق الخاصة به عند تحديث الصفحة (Read Your Own Writes)، بينما يمكن للمتسوقين الآخرين قبول تأخير طفيف في رؤية تحديث المخزون العام لتقليل تكلفة وحدات الطلب RU/s. ما هو مستوى التناسق المعماري الأنسب؟</p>
+            <button class="option-choice-btn" onclick="handleQuiz(this, true, 'az305-q2-exp')">أ) مستوى تناسق الجلسة (Session Consistency).</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'az305-q2-exp')">ب) التناسق القوي (Strong Consistency).</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'az305-q2-exp')">ج) التناسق النهائي (Eventual Consistency).</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'az305-q2-exp')">د) الجمود المقيد (Bounded Staleness).</button>
+            <div id="az305-q2-exp" class="explanation-box">
+                <strong>التفسير المعماري الرسمي لمايكروسوفت:</strong> الإجابة الصحيحة هي (أ). يوفر مستوى Session Consistency ضمان قراءة المستخدم لتعديلاته السابقة فوراً داخل نفس جلسة الاتصال (Read Your Own Writes)، وهو المستوى الافتراضي والأكثر انتشاراً لأنه يوازن بدقة بالغة بين التناسق والتكلفة المالية والأداء السريع.
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav-bar">
+        <button class="nav-btn-lg" onclick="switchTab('view-lp1')">⏮️ السابق: المسار 1</button>
+        <button class="nav-btn-lg nav-btn-primary-lg" onclick="switchTab('view-lp3')">المسار 3: استمرارية الأعمال والتعافي ➔</button>
+    </div>
+</div>
+
+<!-- VIEW 3: LP3 -->
+<div id="view-lp3" class="view-section">
+    <div class="teacher-pedagogy-box">
+        <div class="teacher-pedagogy-header">⏱️ شرح معلم خاص: لغة استمرارية الأعمال في مجالس الإدارة (RTO vs RPO)</div>
+        <p class="section-text">
+            عندما تناقش خطة التعافي من الكوارث (Disaster Recovery)، يسألك المدير التنفيذي سؤالين حاسمين هما:
+        </p>
+        <div class="analogy-card">
+            <strong>المصطلحان الحاكمان لملايين الدولارات:</strong><br>
+            • <strong>RTO (Recovery Time Objective - وقت التعافي):</strong> <em>"كم ساعة سنظل معطلين قبل أن تعيد تشغيل النظام؟"</em> (إذا كان RTO = 1 ساعة، فيجب أن تعود السيرفرات للعمل خلال 60 دقيقة من وقوع الكارثة).<br>
+            • <strong>RPO (Recovery Point Objective - نقطة استعادة البيانات):</strong> <em>"كم كمية البيانات التي سنفقدها مقاسة بالزمن؟"</em> (إذا كان النسخ الاحتياطي يتم الساعة 12:00 ظهراً ووقع الحادث الساعة 12:15 ظهراً، فقدت 15 دقيقة من مبيعات المتجر. إذا كان RPO = 0، فهذا يعني أن النسخ متزامن فوري ولا نتحمل فقد ثانية واحدة!).
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="block-header">
+            <div class="block-num-circle">3</div>
+            <h2 class="block-title">المسار 3: تصميم معمارية استمرارية الأعمال والتعافي من الكوارث (HA & DR)</h2>
+        </div>
+
+        <div class="grid-cards">
+            <div class="card-3d">
+                <h4 style="color: #38bdf8;">1. معمارية التوافر العالي (Active-Active Multi-Region)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    تشغيل النظام في منطقتين جغرافيتين في نفس الوقت (مثل منطقة شرق أمريكا وأوروبا):
+                    يوزع <strong>Azure Front Door</strong> المستخدمين تلقائياً على أقرب منطقة. وإذا احترق مركز بيانات كامل، يُوجّه المستخدمون للمنطقة الثانية دون أن يشعر أي عميل بأي انقطاع (Zero Downtime)!
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #10b981;">2. استرداد المواقع في الكوارث (Azure Site Recovery - ASR)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    تقوم خدمة <strong>ASR</strong> بنسخ الأجهزة الافتراضية والسيرفرات المحلية باستمرار إلى منطقة ثانوية على السحابة (Replication).
+                    في حال سقوط المقر الرئيسي، تضغط على زر <strong>Failover</strong> فتعمل السيرفرات البديلة في السحابة فوراً بأقل من دقيقتين!
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #a855f7;">3. مجموعات تجاوز الفشل لقواعد البيانات (Failover Groups)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    لقواعد بيانات SQL: إنشاء مجموعة تجاوز فشل آلية (Auto-failover Group) بين منطقتين مع توفير اسم خادم وهمي للقراءة والكتابة (Read-Write Listener FQDN).
+                    عند سقوط السيرفر الأساسي، ينقل Azure حركة المرور تلقائياً للسيرفر الثانوي دون الحاجة لتغيير كود الاتصال (Connection String) في تطبيق الويب!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz LP3 -->
+    <div class="quiz-wrapper">
+        <h3 style="color: #fff; margin-bottom: 15px;">🧠 اختبار تقييمي معتمد: أسئلة سيناريو المسار الثالث (AZ-305)</h3>
+        <div class="question-card">
+            <p style="color: #fff; font-weight: 600; margin-bottom: 14px;">السؤال 3: بنك يتطلب ألا تزيد فترة توقف قاعدة بيانات SQL الحساسة عن 10 ثوانٍ في حال سقوط المنطقة الجغرافية بالكامل (RTO &lt; 10s)، وألا تتجاوز فترة فقدان البيانات صفراً (RPO = 0)، مع عدم تغيير سلاسل الاتصال Connection Strings في تطبيقات العملاء. ما هو الحل المعماري؟</p>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'az305-q3-exp')">أ) استعادة النسخة الاحتياطية يدوياً من الأشرطة القديمة.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, true, 'az305-q3-exp')">ب) تكوين مجموعات تجاوز الفشل التلقائي (Auto-Failover Groups) مع استخدام نقطة الاستماع الموحدة (Read-Write Listener Endpoint).</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'az305-q3-exp')">ج) تصدير قاعدة البيانات كملف BACPAC يومياً ورفعه على Google Drive.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'az305-q3-exp')">د) شراء خوادم مستعملة ووضعها في فرع البنك.</button>
+            <div id="az305-q3-exp" class="explanation-box">
+                <strong>التفسير المعماري الرسمي لمايكروسوفت:</strong> الإجابة الصحيحة هي (ب). توفر Auto-failover Groups في Azure SQL Database التكرار الجغرافي المستمر ونقل الفشل الآلي فائق السرعة عبر مناطق متعددة مع توفير Listener FQDN ثابت يمنع أي حاجة لتحديث كود التطبيقات.
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav-bar">
+        <button class="nav-btn-lg" onclick="switchTab('view-lp2')">⏮️ السابق: المسار 2</button>
+        <button class="nav-btn-lg nav-btn-primary-lg" onclick="switchTab('view-lp4')">المسار 4: الشبكات و Zero Trust ➔</button>
+    </div>
+</div>
+
+<!-- VIEW 4: LP4 -->
+<div id="view-lp4" class="view-section">
+    <div class="teacher-pedagogy-box">
+        <div class="teacher-pedagogy-header">🛡️ شرح معلم خاص: معمارية الشبكات الكبرى ومبدأ "انعدام الثقة" (Zero Trust)</div>
+        <p class="section-text">
+            النموذج الأمني القديم كان مثل "القلعة ذات الخندق المائي": بمجرد أن يعبر الشخص البوابة الرئيسية، نثق به تماماً ونتحرك بحرية! هذا النموذج فشل وتسبب في أكبر اختراقات العالم.<br>
+            <strong>المعمارية الحديثة: انعدام الثقة (Zero Trust Architecture):</strong>
+        </p>
+        <div class="analogy-card">
+            القاعدة الحاكمة: <strong>"لا تثق بأي أحد أبداً، وتحقق دائماً (Never Trust, Always Verify)!"</strong><br>
+            حتى لو كان الطلب قادماً من داخل شبكة الشركة، وحتى لو كان من كمبيوتر رئيس مجلس الإدارة نفسه:
+            نتحقق من هوية المستخدم (MFA)، ومن صحة وسلامة الجهاز، ومن موقعه، ونعطيه الحد الأدنى المسموح به من الصلاحيات فقط للمهمة المحددة!
+        </div>
+    </div>
+
+    <div class="content-block">
+        <div class="block-header">
+            <div class="block-num-circle">4</div>
+            <h2 class="block-title">المسار 4: تصميم معمارية البنية التحتية والشبكات والأمان المؤسسي</h2>
+        </div>
+
+        <div class="grid-cards">
+            <div class="card-3d">
+                <h4 style="color: #38bdf8;">1. معمارية شبكة المركز والأطراف (Hub-and-Spoke Topology)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    المعيار الذهبي لشبكات الشركات في Azure:
+                    <br>• <strong>المركز (Hub VNet):</strong> شبكة مركزية تحتوي على الخدمات المشتركة: الجدار الناري الذكي <strong>Azure Firewall</strong>، وبوابة VPN/ExpressRoute، و Private DNS.
+                    <br>• <strong>الأطراف (Spoke VNets):</strong> شبكات المشاريع والأنظمة المنفصلة.
+                    <br>• تتصل كل الأطراف بالمركز فقط عبر Peering، ويتم إجبار حركة المرور بين أي مشروعين على المرور عبر جدار الحماية في الـ Hub للتفتيش الأمني!
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #10b981;">2. توزيع الأحمال العالمية والإقليمية (Front Door vs App Gateway)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    • <strong>Azure Front Door:</strong> موازن أحمال عالمي (Global Layer 7) لتوجيه الترافيك بين قارات متعددة مع حماية WAF مدمجة وتسريع الأداء بشبكة Anycast.<br>
+                    • <strong>Application Gateway:</strong> موازن أحمال إقليمي (Regional Layer 7) مخصص لإدارة الترافيك بين السيرفرات داخل نفس المنطقة مع فحص هجمات الويب (OWASP Top 10).
+                </p>
+            </div>
+
+            <div class="card-3d">
+                <h4 style="color: #a855f7;">3. الوصول الشرطي المشدد (Conditional Access)</h4>
+                <p style="color: #cbd5e1; font-size: 0.92rem;">
+                    محرك اتخاذ قرارات الأمان في Entra ID:
+                    يفحص الإشارات اللحظية (موقع الموظف، نوع الجهاز، هل يتصل من دولة خطرة؟ هل سلوك التصفح مريب؟)؛
+                    فإذا كان الخطر منخفضاً يسمح بالدخول، وإذا كان متوسطاً يطلب بصمة MFA، وإذا كان خطراً يمنع الدخول فوراً (Block Access).
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz LP4 -->
+    <div class="quiz-wrapper">
+        <h3 style="color: #fff; margin-bottom: 15px;">🧠 اختبار تقييمي معتمد: أسئلة سيناريو المسار الرابع (AZ-305)</h3>
+        <div class="question-card">
+            <p style="color: #fff; font-weight: 600; margin-bottom: 14px;">السؤال 4: تصمم معمارية لشركة دولية لديها 20 شبكة افتراضية VNet لمشاريع مختلفة، وتشترط إدارة أمن المعلومات المركزية تفتيش وتصفية جميع حركات المرور الصادرة إلى الإنترنت وحركات المرور المتبادلة بين الشبكات من خلال نقطة تحكم أمنية واحدة فقط لمنع الاختراقات وتطبيق سياسات موحدة. ما هي المعمارية الواجب اعتمادها؟</p>
+            <button class="option-choice-btn" onclick="handleQuiz(this, true, 'az305-q4-exp')">أ) معمارية شبكة المركز والأطراف (Hub-and-Spoke) ونشر Azure Firewall داخل شبكة الـ Hub مع توجيه الترافيك عبر جداول توجيه مخصصة (UDR).</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'az305-q4-exp')">ب) ربط جميع الشبكات الـ 20 مع بعضها مباشرة بشبكة تشابكية كاملة (Full Mesh Peering) بدون جدران نارية.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'az305-q4-exp')">ج) منح كل جهاز عنوان IP عام على الإنترنت المفتوح.</button>
+            <button class="option-choice-btn" onclick="handleQuiz(this, false, 'az305-q4-exp')">د) دمج جميع الخوادم في جهاز كمبيوتر واحد ضخم.</button>
+            <div id="az305-q4-exp" class="explanation-box">
+                <strong>التفسير المعماري الرسمي لمايكروسوفت:</strong> الإجابة الصحيحة هي (أ). تمثل معمارية Hub-and-Spoke الحل المؤسسي القياسي الموصى به في إطار CAF؛ حيث تتيح عزل بيئات المشاريع المختلفة كأطراف (Spokes) مع مركزية الخدمات الأمنية والتفتيش والاتصال الهجين داخل شبكة المركز (Hub).
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-nav-bar">
+        <button class="nav-btn-lg" onclick="switchTab('view-lp3')">⏮️ السابق: المسار 3</button>
+        <button class="nav-btn-lg nav-btn-primary-lg" onclick="switchTab('view-toc')">🎉 إتمام كورس AZ-305 بنجاح والعودة للفهرس ➔</button>
+    </div>
+</div>
+
+</div>
+
+<script>
+function switchTab(viewId) {
+    document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.pill-btn').forEach(el => el.classList.remove('active'));
+    
+    const targetView = document.getElementById(viewId);
+    if (targetView) targetView.classList.add('active');
+    
+    const targetPill = document.getElementById('pill-' + viewId);
+    if (targetPill) targetPill.classList.add('active');
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function handleQuiz(btn, isCorrect, explanationId) {
+    const parent = btn.parentElement;
+    const buttons = parent.querySelectorAll('.option-choice-btn');
+    buttons.forEach(b => {
+        b.disabled = true;
+        b.style.cursor = 'default';
+    });
+    
+    const expBox = document.getElementById(explanationId);
+    if (isCorrect) {
+        btn.classList.add('correct');
+        if (expBox) { expBox.className = 'explanation-box show success'; }
+    } else {
+        btn.classList.add('incorrect');
+        if (expBox) { expBox.className = 'explanation-box show error'; }
+    }
+}
+</script>
+</body>
+</html>
